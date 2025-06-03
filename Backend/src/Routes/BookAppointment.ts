@@ -1,8 +1,7 @@
-import express, { Response, Request } from "express";
 import { PrismaClient } from "@prisma/client";
 const client = new PrismaClient();
 
-export default async function appointment(req: Request, res: Response) {
+export default async function appointment(req: any, res: any) {
   const fullName = req.body.fullName;
   const mobileNumber = req.body.mobileNumber;
   const helpWith = req.body.helpWith;
