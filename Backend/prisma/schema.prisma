@@ -7,7 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User1 {
-  id Int @id
-  email String 
+model Appointment {
+  id           Int      @id @default(autoincrement())
+  fullName     String
+  mobileNumber String
+  helpWith     String?
+  message      String?
+  createdAt    DateTime @default(now())
 }
