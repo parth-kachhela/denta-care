@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Loader2 } from "lucide-react"; // Icon for spinner
 
 const BookAppointment = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const BookAppointment = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false); // 👈 loader state
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleChange = (
@@ -26,6 +28,7 @@ const BookAppointment = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true); // 👈 show loader
     try {
       const ans = await axios.post(`${backendUrl}/appointment`, {
         fullName: formData.fullName,
@@ -40,6 +43,9 @@ const BookAppointment = () => {
       }
     } catch (e) {
       console.error("Failed to submit appointment:", e);
+      alert("Something went wrong! Please try again.");
+    } finally {
+      setLoading(false); // 👈 hide loader
     }
   };
 
@@ -104,8 +110,20 @@ const BookAppointment = () => {
               rows={4}
             />
           </div>
-          <Button type="submit" className="w-full text-lg cursor-pointer">
-            Submit Appointment
+
+          <Button
+            type="submit"
+            className="w-full text-lg flex items-center justify-center gap-2"
+            disabled={loading} // 👈 disable button
+          >
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin h-5 w-5" />
+                Submitting...
+              </>
+            ) : (
+              "Submit Appointment"
+            )}
           </Button>
         </form>
       </main>

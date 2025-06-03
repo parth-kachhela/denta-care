@@ -14,6 +14,7 @@ export default async function appointment(req: any, res: any) {
       message: message,
     },
   });
+
   if (!ans) {
     res.status(500).json({
       message: "some internal server error",
