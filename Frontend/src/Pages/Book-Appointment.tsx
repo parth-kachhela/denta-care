@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const BookAppointment = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     fullName: "",
     mobileNumber: "",
     helpWith: "",
     message: "",
   });
+
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -18,10 +24,23 @@ const BookAppointment = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Appointment Submitted:", formData);
-    // Here you would send the form data to the backend
+    try {
+      const ans = await axios.post(`${backendUrl}/appointment`, {
+        fullName: formData.fullName,
+        mobileNumber: formData.mobileNumber,
+        helpWith: formData.helpWith,
+        message: formData.message,
+      });
+
+      if (ans) {
+        alert("Appointment sent! We will contact you soon.");
+        navigate("/");
+      }
+    } catch (e) {
+      console.error("Failed to submit appointment:", e);
+    }
   };
 
   return (
