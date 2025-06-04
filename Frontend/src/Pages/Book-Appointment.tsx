@@ -113,7 +113,7 @@ const BookAppointment = () => {
 
           <Button
             type="submit"
-            className="w-full text-lg flex items-center justify-center gap-2"
+            className="w-full text-lg flex items-center cursor-pointer justify-center gap-2"
             disabled={loading} // 👈 disable button
           >
             {loading ? (
