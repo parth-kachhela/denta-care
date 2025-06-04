@@ -63,7 +63,6 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Sidebar */}
       <aside className="w-64 bg-white border-r p-4 hidden md:block">
         <h2 className="text-2xl font-bold text-blue-600 mb-6">DentCare</h2>
         <div className="space-y-4">
@@ -95,7 +94,6 @@ const AdminDashboard = () => {
         </div>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 bg-gray-50 p-6">
         <header className="text-center py-4 mb-6">
           <h1 className="text-4xl font-bold text-blue-600">Admin Dashboard</h1>

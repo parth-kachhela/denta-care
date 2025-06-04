@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/routes/addpatient.ts","./src/routes/bookappointment.ts","./src/routes/getallappointment.ts","./src/routes/getallpatients.ts","./src/routes/updatestatus.ts"],"version":"5.8.3"}
+{"root":["./src/index.ts","./src/routes/addvisit.ts","./src/routes/addpatient.ts","./src/routes/bookappointment.ts","./src/routes/getallappointment.ts","./src/routes/getallpatients.ts","./src/routes/getpatientwithvisits.ts","./src/routes/updatestatus.ts"],"version":"5.8.3"}
