@@ -141,7 +141,12 @@ const NewPatient = () => {
                   required
                 />
               </div>
-              <Button type="submit" disabled={loading} className="w-full mt-4">
+              <Button
+                type="submit"
+                disabled={loading}
+                onClick={() => navigate("/")}
+                className="w-full mt-4"
+              >
                 {loading ? "Submitting..." : "Add Patient"}
               </Button>
               {successMessage && (

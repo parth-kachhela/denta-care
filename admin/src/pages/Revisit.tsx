@@ -164,7 +164,11 @@ const Revisit = () => {
             onChange={handleChange}
             required
           />
-          <Button type="submit" className="w-full">
+          <Button
+            type="submit"
+            className="w-full"
+            onClick={() => navigate("/old")}
+          >
             Submit Visit
           </Button>
           {successMessage && (
