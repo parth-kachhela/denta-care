@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Input } from "@/components/ui/input";
@@ -41,22 +43,28 @@ const AllPatients = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       {/* Navbar */}
-      <nav className="flex justify-between items-center mb-10 px-4 py-2 bg-white shadow rounded-xl max-w-6xl mx-auto">
-        <div className="flex items-center gap-3">
+      <nav className="flex justify-between items-center px-4 py-2 bg-white shadow mb-6">
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           <img src="/logo.png" alt="Logo" className="w-10 h-10" />
           <span className="text-xl font-semibold text-blue-600">
             DentalCare Admin
           </span>
         </div>
+        <Button variant="ghost" onClick={() => navigate("/")}>
+          Back
+        </Button>
       </nav>
 
       <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
         All Patients
       </h2>
 
-      <div className="max-w-md mx-auto mb-6">
+      <div className="max-w-md mx-auto mb-8 px-4">
         <Input
           placeholder="Search by full name..."
           value={search}
@@ -66,44 +74,37 @@ const AllPatients = () => {
       </div>
 
       {loading ? (
-        <p className="text-center">Loading patients...</p>
+        <p className="text-center text-lg text-gray-600">Loading patients...</p>
       ) : filteredPatients.length === 0 ? (
-        <p className="text-center">No matching patients found.</p>
+        <p className="text-center text-gray-500">No matching patients found.</p>
       ) : (
-        <div className="max-w-4xl mx-auto">
-          <Card className="overflow-x-auto shadow-md">
-            <table className="min-w-full text-sm text-left border-spacing-4">
-              <thead className="bg-blue-100 text-blue-700 border-spacing-2">
-                <tr>
-                  <th className="px-4 py-2">Name</th>
-                  <th className="px-4 py-2">Address</th>
-                  <th className="px-4 py-2">Contact</th>
-                  <th className="px-4 py-2">Joined</th>
-                  <th className="px-4 py-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredPatients.map((patient) => (
-                  <tr key={patient.id} className="border-b hover:bg-blue-50">
-                    <td className="px-4 py-2">{patient.fullName}</td>
-                    <td className="px-4 py-2">{patient.address}</td>
-                    <td className="px-4 py-2">{patient.contact}</td>
-                    <td className="px-4 py-2">
-                      {new Date(patient.createdAt).toLocaleDateString()}
-                    </td>
-                    <td className="px-4 py-2">
-                      <Button
-                        className="text-xs cursor-pointer"
-                        onClick={() => navigate(`/visit-again/${patient.id}`)}
-                      >
-                        Visit Again
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </Card>
+        <div className="grid gap-4 max-w-4xl mx-auto px-4 pb-10">
+          {filteredPatients.map((patient) => (
+            <Card
+              key={patient.id}
+              className="p-4 shadow-md hover:shadow-xl transition duration-300 border border-blue-100"
+            >
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-xl font-semibold text-blue-700 mb-1">
+                    {patient.fullName}
+                  </h3>
+                  <p className="text-sm text-gray-600">📍 {patient.address}</p>
+                  <p className="text-sm text-gray-600">📞 {patient.contact}</p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    Joined on:{" "}
+                    {new Date(patient.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+                <Button
+                  className="text-xs mt-2"
+                  onClick={() => navigate(`/visit-again/${patient.id}`)}
+                >
+                  Visit Again
+                </Button>
+              </div>
+            </Card>
+          ))}
         </div>
       )}
     </div>
