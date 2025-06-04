@@ -17,3 +17,22 @@ model Appointment {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model Patient {
+  id        String   @id @default(uuid())
+  fullName  String
+  address   String
+  contact   String
+  createdAt DateTime @default(now())
+  visits    Visit[]
+}
+
+model Visit {
+  id          String   @id @default(uuid())
+  patient     Patient  @relation(fields: [patientId], references: [id])
+  patientId   String
+  disease     String
+  diagnosis   String
+  solution    String
+  visitDate   DateTime @default(now())
+}

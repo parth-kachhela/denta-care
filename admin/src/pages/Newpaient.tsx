@@ -33,17 +33,10 @@ const NewPatient = () => {
 
     try {
       // Step 1: Create Patient
-      const patientRes = await axios.post(`${backendUrl}/patients`, {
+      await axios.post(`${backendUrl}/patients`, {
         fullName: formData.fullName,
         address: formData.address,
         contact: formData.contact,
-      });
-      //@ts-ignore
-      const patientId = patientRes.data.id;
-
-      // Step 2: Add First Visit
-      await axios.post(`${backendUrl}/visits`, {
-        patientId,
         disease: formData.disease,
         diagnosis: formData.diagnosis,
         solution: formData.solution,
