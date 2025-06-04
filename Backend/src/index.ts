@@ -6,6 +6,7 @@ import updateStatus from "./Routes/UpdateStatus";
 import GetAllPatients from "./Routes/GetAllPatients";
 import GetPatientWithVisits from "./Routes/GetPatientWithVisits";
 import AddVisit from "./Routes/AddVisit";
+import appointment from "./Routes/BookAppointment";
 
 const app = express();
 app.use(cors());
@@ -15,12 +16,12 @@ app.get("/", (req, res) => {
   res.json("Hey there");
 });
 
-app.post("/api/appointment", Addpatient);
-app.get("/api/get", GetAllAppointment);
-app.put("/api/appointments/:id/status", updateStatus);
-app.get("/api/patients", GetAllPatients);
+app.post("/api/appointment", appointment);
 
-// 👇 Revisit-related routes
+app.put("/api/appointments/:id/status", updateStatus);
+app.get("/api/get", GetAllAppointment);
+app.post("/api/patients", Addpatient);
+app.get("/api/patients", GetAllPatients);
 app.get("/api/patients/:id", GetPatientWithVisits);
 app.post("/api/visits", AddVisit);
 
