@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminDashboard from "./pages/Dashboard";
 import Newpaient from "./pages/Newpaient";
 import Oldpaient from "./pages/Oldpatient";
+import Revisit from "./pages/Revisit";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
           <Route path="/" element={<AdminDashboard />} />
           <Route path="/add" element={<Newpaient />} />
           <Route path="/old" element={<Oldpaient />} />
+          <Route path="/visit-again/:patientId" element={<Revisit />} />
+
           <Route
             path="*"
             element={

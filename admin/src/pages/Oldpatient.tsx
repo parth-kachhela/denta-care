@@ -3,6 +3,7 @@ import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 interface Patient {
   id: string;
@@ -16,7 +17,7 @@ const AllPatients = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
@@ -92,10 +93,8 @@ const AllPatients = () => {
                     </td>
                     <td className="px-4 py-2">
                       <Button
-                        className="text-xs"
-                        onClick={() => {
-                          console.log("Visit Again for", patient.id);
-                        }}
+                        className="text-xs cursor-pointer"
+                        onClick={() => navigate(`/visit-again/${patient.id}`)}
                       >
                         Visit Again
                       </Button>
