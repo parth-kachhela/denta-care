@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 interface Visit {
   id: string;
@@ -32,9 +32,9 @@ const Revisit = () => {
     solution: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
-
   const { patientId } = useParams();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPatient = async () => {
@@ -78,15 +78,21 @@ const Revisit = () => {
   if (!patient) return <p className="text-center mt-10">Patient not found.</p>;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-      <nav className="flex justify-between items-center mb-6 px-4 py-2 bg-white shadow rounded-xl max-w-6xl mx-auto">
-        <div className="flex items-center gap-3">
+      <nav className="flex justify-between items-center px-4 py-2 bg-white shadow mb-6">
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           <img src="/logo.png" alt="Logo" className="w-10 h-10" />
           <span className="text-xl font-semibold text-blue-600">
             DentalCare Clinic
           </span>
         </div>
+        <Button variant="ghost" onClick={() => navigate("/")}>
+          Back
+        </Button>
       </nav>
 
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow">
@@ -111,9 +117,12 @@ const Revisit = () => {
             No previous visits recorded.
           </p>
         ) : (
-          <ul className="list-disc list-inside space-y-2 mb-6">
+          <ul className="space-y-3 mb-6">
             {patient.visits.map((visit) => (
-              <li key={visit.id} className="bg-gray-100 p-3 rounded-md">
+              <li
+                key={visit.id}
+                className="bg-gray-100 p-4 rounded-md text-sm border border-gray-200"
+              >
                 <p>
                   <strong>Date:</strong>{" "}
                   {new Date(visit.visitDate).toLocaleDateString()}
@@ -134,33 +143,27 @@ const Revisit = () => {
 
         <h3 className="text-xl font-semibold mb-2">Add New Visit</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Input
-              name="disease"
-              placeholder="Disease"
-              value={formData.disease}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Input
-              name="diagnosis"
-              placeholder="Diagnosis"
-              value={formData.diagnosis}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Input
-              name="solution"
-              placeholder="Solution"
-              value={formData.solution}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <Input
+            name="disease"
+            placeholder="Disease"
+            value={formData.disease}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            name="diagnosis"
+            placeholder="Diagnosis"
+            value={formData.diagnosis}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            name="solution"
+            placeholder="Solution"
+            value={formData.solution}
+            onChange={handleChange}
+            required
+          />
           <Button type="submit" className="w-full">
             Submit Visit
           </Button>
