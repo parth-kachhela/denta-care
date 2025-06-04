@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import appointment from "./Routes/BookAppointment";
-import getAllPatients from "./Routes/GetAllpatient";
 import updateStatus from "./Routes/UpdateStatus";
 import Addpatient from "./Routes/Addpatient";
+import GetAllAppointment from "./Routes/GetAllAppointment";
 
 const app = express();
 app.use(cors());
@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 app.post("/api/appointment", appointment);
 app.post("/api/patients", Addpatient); // 👈 This route handles both patient and visit
-app.get("/api/get", getAllPatients);
+app.get("/api/get", GetAllAppointment);
 app.put("/api/appointments/:id/status", updateStatus);
 
 app.listen(8080, () => {
