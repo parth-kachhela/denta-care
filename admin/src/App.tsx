@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminDashboard from "./pages/Dashboard";
 import Newpaient from "./pages/Newpaient";
+import Oldpaient from "./pages/Oldpatient";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AdminDashboard />} />
           <Route path="/add" element={<Newpaient />} />
+          <Route path="/old" element={<Oldpaient />} />
           <Route
             path="*"
             element={

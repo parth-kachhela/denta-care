@@ -76,7 +76,13 @@ const AdminDashboard = () => {
           >
             <UserPlus className="h-4 w-4" /> New Patient
           </Button>
-          <Button variant="outline" className="w-full flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="w-full flex items-center gap-2"
+            onClick={() => {
+              navitage("/old");
+            }}
+          >
             <Users className="h-4 w-4" /> Old Patient
           </Button>
         </div>
