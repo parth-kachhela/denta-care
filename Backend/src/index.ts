@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/appointment", appointment);
-app.post("/api/patients", Addpatient); // 👈 This route handles both patient and visit
+app.post("/api/patients", Addpatient);
 app.get("/api/get", GetAllAppointment);
 app.put("/api/appointments/:id/status", updateStatus);
 
