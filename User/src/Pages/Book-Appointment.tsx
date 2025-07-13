@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Loader2 } from "lucide-react"; // Icon for spinner
+import Footer from "@/components/ui/Footer";
 
 const BookAppointment = () => {
   const navigate = useNavigate();
@@ -128,12 +129,7 @@ const BookAppointment = () => {
         </form>
       </main>
 
-      <footer className="bg-blue-100 py-8 px-6 text-center text-sm">
-        <p className="font-semibold text-lg mb-2">DentCare</p>
-        <p>123 Smile Avenue, Toothville, CA 94000</p>
-        <p>Email: contact@dentcare.com | Phone: (123) 456-7890</p>
-        <p className="mt-2">© 2025 DentCare. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

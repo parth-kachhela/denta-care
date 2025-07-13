@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/ui/Footer";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -81,12 +82,7 @@ const ContactUs = () => {
         </form>
       </main>
 
-      <footer className="bg-blue-100 py-8 px-6 text-center text-sm">
-        <p className="font-semibold text-lg mb-2">DentCare</p>
-        <p>123 Smile Avenue, Toothville, CA 94000</p>
-        <p>Email: contact@dentcare.com | Phone: (123) 456-7890</p>
-        <p className="mt-2">© 2025 DentCare. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };
