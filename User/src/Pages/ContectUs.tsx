@@ -33,7 +33,6 @@ const ContactUs = () => {
           DentCare
         </Link>
       </header>
-
       <main className="flex-1 py-16 px-6 md:px-20 max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-center text-blue-700">
           Contact Us
@@ -81,8 +80,7 @@ const ContactUs = () => {
           </Button>
         </form>
       </main>
-
-      <Footer />
+      <Footer /> g
     </div>
   );
 };

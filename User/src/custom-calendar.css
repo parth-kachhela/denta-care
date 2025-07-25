@@ -1,0 +1,23 @@
+/* Remove react-calendar default padding/margin */
+.react-calendar {
+  width: 100%;
+  background: rgb(255, 251, 251);
+  border: none;
+  color: black;
+  font-family: inherit;
+  line-height: 1.125em;
+}
+
+.react-calendar__tile {
+  height: 60px;
+  color: black;
+}
+
+.react-calendar__tile--now {
+  background: #595b5e !important; /* gray-300 */
+}
+
+.react-calendar__tile--active {
+  background: #3b82f6 !important; /* blue-500 */
+  color: rgb(0, 0, 0) !important;
+}
