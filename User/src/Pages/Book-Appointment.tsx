@@ -8,7 +8,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import Footer from "@/components/ui/Footer";
+import axios from "axios";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 // Dummy data
 const blockedDates = ["2025-08-15", "2025-08-20"];
 const appointmentsPerDay: Record<string, number> = {
@@ -26,7 +28,7 @@ const BookAppointment = () => {
     mobileNumber: "",
     helpWith: "",
     message: "",
-    date: "", // selected from calendar
+    date: "",
     time: "",
   });
 
@@ -84,9 +86,19 @@ const BookAppointment = () => {
     if (!formData.date || error) return;
     setLoading(true);
     try {
-      // Send data to backend here
-      alert("Appointment sent! We'll contact you soon.");
-      navigate("/");
+      const ans = await axios.post(`${backendUrl}/appointment`, {
+        fullName: formData.fullName,
+        mobileNumber: formData.mobileNumber,
+        helpWith: formData.helpWith,
+        message: formData.message,
+        date: formData.date,
+        time: formData.time,
+      });
+
+      if (ans) {
+        alert("Appointment sent! We will contact you soon.");
+        navigate("/");
+      }
     } catch (err) {
       console.error("Submit failed:", err);
       alert("Something went wrong!");
