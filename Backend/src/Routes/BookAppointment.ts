@@ -2,27 +2,32 @@ import { PrismaClient } from "@prisma/client";
 const client = new PrismaClient();
 
 export default async function appointment(req: any, res: any) {
-  const fullName = req.body.fullName;
-  const mobileNumber = req.body.mobileNumber;
-  const helpWith = req.body.helpWith;
-  const message = req.body.message;
-  const ans = await client.appointment.create({
-    data: {
-      fullName: fullName,
-      mobileNumber: mobileNumber,
-      helpWith: helpWith,
-      message: message,
-    },
-  });
+  try {
+    const { fullName, mobileNumber, helpWith, message, date, time } = req.body;
 
-  if (!ans) {
-    res.status(500).json({
-      message: "some internal server error",
+    // Convert string "2025-09-10" -> Date object
+    const parsedDate = date ? new Date(date) : null;
+
+    const ans = await client.appointment.create({
+      data: {
+        fullName,
+        mobileNumber,
+        helpWith,
+        message,
+        date: parsedDate, // ✅ Prisma expects Date object
+        time, // ✅ keep time as string (slot name)
+      },
     });
-  }
-  if (ans) {
+
     res.status(200).json({
-      message: "appoitment added..!",
+      message: "Appointment added!",
+      data: ans,
+    });
+  } catch (error) {
+    console.error("Error creating appointment:", error);
+    res.status(500).json({
+      message: "Internal server error",
+      error,
     });
   }
 }

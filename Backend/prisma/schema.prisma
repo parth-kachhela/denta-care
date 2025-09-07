@@ -13,8 +13,8 @@ model Appointment {
   mobileNumber String
   helpWith     String
   message      String?
-  date         DateTime?
-  time         DateTime?
+  date        DateTime?
+  time         String?
   status       String   @default("pending")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

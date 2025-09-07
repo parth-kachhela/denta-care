@@ -9,7 +9,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import Footer from "@/components/ui/Footer";
 import axios from "axios";
-
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 // Dummy data
 const blockedDates = ["2025-08-15", "2025-08-20"];
